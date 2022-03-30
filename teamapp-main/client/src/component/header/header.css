@@ -1,0 +1,53 @@
+.topnav {
+    background-color: #333;
+    min-height: 70px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+
+  
+.topnav a{
+    text-transform: uppercase;
+    text-decoration: none;
+    color:white;;
+}
+.topnav a:hover{
+    color: aqua;
+}
+  .topnav .logo {  
+      margin-left: -10%;
+    display: flex;
+}
+  .topnav .logo img{
+    width: 40px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.topnav .logo p{
+    color: white;
+   font-weight: 500;
+}
+
+.topnav ul{
+    margin-right: -30%;
+}
+
+.topnav ul li{
+    list-style-type: none;
+    color:white;
+    display: inline-block;
+    opacity: 1;
+    padding: 0 20px;
+  }
+  .topnav ul li:hover{
+      color:aqua;
+      opacity: 1.5;
+  }
+
+
