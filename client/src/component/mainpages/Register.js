@@ -45,17 +45,12 @@ const registerSubmit = async ( data) =>{
                 Register
                </Typography>
           </Stack>
-  
-          <label>Name</label>
-  
+
        <Stack sx={{marginBottom:2,width:"100%",outline:'none'}}>
         <input type='text' placeholder='enter your name' {...register("name", { required: true })} />
         {/* errors will return when field validation fails  */}
         {errors.email&& <span>This field is required</span>}
         </Stack>
-
-        
-              <label>Email</label>
   
         <Stack sx={{marginBottom:2,width:"100%",outline:'none'}}>
               <input type='email' placeholder='enter your email id' {...register("email", { required: true })} />
@@ -82,3 +77,6 @@ const registerSubmit = async ( data) =>{
 }
 
 export default Register
+
+
+

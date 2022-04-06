@@ -6,10 +6,13 @@ import Typography from '@material-ui/core/Typography';
 
 import IplTableteam from '../IplTableteam'
 
+
+
+
 import { useForm } from "react-hook-form";
 
-import { Box, Divider } from '@mui/material';
-
+import { Box, Button, Divider } from '@mui/material';
+import Stack from '@mui/material/Stack';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -88,125 +91,183 @@ try {
   return (
     <div className='teamUpdate'>
 
-<Box  sx={{ display: 'flex', m:30,flexWrap:'wrap' }}>
-    <Box sx={{bgcolor:'#f9fbe7', width:'300px', height:'500px',my:10,ml:10,boxShadow: 10}}>
-    <form id='exit' key={1} onSubmit={handleSubmit4(UpdateSubmit)}>
-            <Typography  variant="h4" gutterBottom>
-                Score Update
-            </Typography>
-
-            <Divider/>
-        <div>
-          <label htmlFor=''>TEAM NAME </label>
-           <input type='text' placeholder='enter your team' {...register4("team", { required: true })} />
-          {errors4.team && <span>This field is required</span>}
-        </div>
+       <Typography  variant="h4" gutterBottom>
+          IPL Points table
+        </Typography>
         <Divider/>
-        <div>
-          <label htmlFor='match'>TEAM matchs </label>
-           <input type='text' placeholder='enter your total matchs' {...register4("match", { required: true })} />
-          {errors4.match && <span>This field is required</span>}
-        </div>
-        <div>
-          <label htmlFor='winings'>TEAM winings matchs</label>
-           <input type='text' placeholder='enter your winings' {...register4("winings", { required: true })} />
-          {errors4.winings && <span>This field is required</span>}
-        </div>
-        <div>
-          <label htmlFor='lose'>TEAM lose matches </label>
-           <input type='text' placeholder='enter your ' {...register4("lose", { required: true })} />
-          {errors4.lose && <span>This field is required</span>}
-        </div>
-        <div>
-          <label htmlFor='score'>TEAM score</label>
-           <input type='text' placeholder='enter your scores in match ' {...register4("score", { required: true })} />
-          {errors4.score && <span>This field is required</span>}
-        </div>
+      <IplTableteam/>
 
-        <div>
-          <label htmlFor='overs'>total overs in this match</label>
-          <input type='text' placeholder='enter your team name' {...register4("overs", { required: true })} />
-          {errors4.overs && <span>This field is required</span>}
-        </div>
-
-        <input type="submit" />
+<Box  sx={{ display: 'flex',flexWrap:'wrap' }}>
+    <Box sx={{ display: 'flex',flexWrap:'wrap',alignItems:'center',px:15,  
+    bgcolor:'#f9fbe7', width:'200px', height:'600px',m:10,boxShadow: 10}}>
+    <form id='exit' key={2} onSubmit={handleSubmit4(UpdateSubmit)}>
+        <Typography  variant="h4" gutterBottom>
+                 team website
+        </Typography>
+        
+      <Stack>
+        <TextField
+        type='text'
+         {...register4("team", { required: true })}
+        label={"team name"} //optional
+      />
+       {errors4.team && <span>This field is required</span>}
+      </Stack>
+      <Stack>
+        <TextField
+        type='text'
+         {...register4("match", { required: true })}
+        label={"match"} //optional
+      />
+       {errors4.match && <span>This field is required</span>}
+      </Stack>
+      <Stack>
+        <TextField
+        type='text'
+         {...register4("winings", { required: true })}
+        label={"TEAM winings matchs"} //optional
+      />
+       {errors4.winings && <span>This field is required</span>}
+      </Stack>
+      <Stack>
+        <TextField
+        type='text'
+         {...register4("lose", { required: true })}
+        label={"lose"} //optional
+      />
+       {errors4.lose && <span>This field is required</span>}
+      </Stack>
+      <Stack>
+        <TextField
+        type='text'
+         {...register4("score", { required: true })}
+        label={"score"} //optional
+      />
+       {errors4.score && <span>This field is required</span>}
+      </Stack>
+      <Stack>
+        <TextField
+        type='text'
+         {...register4("overs", { required: true })}
+        label={"overs"} //optional
+      />
+       {errors4.overs && <span>This field is required</span>}
+      </Stack>
+      <Button type='submit'>update</Button>
     </form>
     </Box>
 
 
-    <Box sx={{bgcolor:'#f9fbe7', width:'300px', height:'500px',m:10,boxShadow: 10}}>
+    <Box sx={{ display: 'flex',flexWrap:'wrap',alignItems:'center',px:15,  
+    bgcolor:'#f9fbe7', width:'200px', height:'600px',m:10,boxShadow: 10}}>
     <form id='exit' key={2} onSubmit={handleSubmit3(CreateSubmit)}>
         <Typography  variant="h4" gutterBottom>
                 create a new team
         </Typography>
-        <div>
-          <label htmlFor=''>TEAM NAME </label>
-           <input type='text' placeholder='enter your team' {...register3("team", { required: true })} />
-          {errors3.team && <span>This field is required</span>}
-        </div>
-        <div>
-          <label htmlFor='match'>TEAM matchs </label>
-           <input type='text' placeholder='enter your total matchs' {...register3("match", { required: true })} />
-          {errors3.match && <span>This field is required</span>}
-        </div>
-        <div>
-          <label htmlFor='winings'>TEAM winings matchs</label>
-           <input type='text' placeholder='enter your winings' {...register3("winings", { required: true })} />
-          {errors3.winings && <span>This field is required</span>}
-        </div>
-        <div>
-          <label htmlFor='lose'>TEAM lose matches </label>
-           <input type='text' placeholder='enter your ' {...register3("lose", { required: true })} />
-          {errors3.lose && <span>This field is required</span>}
-        </div>
-        <div>
-          <label htmlFor='score'>TEAM score</label>
-           <input type='text' placeholder='enter your scores in match ' {...register3("score", { required: true })} />
-          {errors3.score && <span>This field is required</span>}
-        </div>
-
-        <div>
-          <label htmlFor='overs'>total overs in this match</label>
-          <input type='text' placeholder='enter your team name' {...register3("overs", { required: true })} />
-          {errors3.overs && <span>This field is required</span>}
-        </div>
-
-        <input type="submit" />
+        
+      <Stack>
+        <TextField
+        type='text'
+         {...register3("team", { required: true })}
+        label={"team name"} //optional
+      />
+       {errors3.team && <span>This field is required</span>}
+      </Stack>
+      <Stack>
+        <TextField
+        type='text'
+         {...register3("match", { required: true })}
+        label={"match"} //optional
+      />
+       {errors3.match && <span>This field is required</span>}
+      </Stack>
+      <Stack>
+        <TextField
+        type='text'
+         {...register3("winings", { required: true })}
+        label={"TEAM winings matchs"} //optional
+      />
+       {errors3.winings && <span>This field is required</span>}
+      </Stack>
+      <Stack>
+        <TextField
+        type='text'
+         {...register3("lose", { required: true })}
+        label={"lose"} //optional
+      />
+       {errors3.lose && <span>This field is required</span>}
+      </Stack>
+      <Stack>
+        <TextField
+        type='text'
+         {...register3("score", { required: true })}
+        label={"score"} //optional
+      />
+       {errors3.score && <span>This field is required</span>}
+      </Stack>
+      <Stack>
+        <TextField
+        type='text'
+         {...register3("overs", { required: true })}
+        label={"overs"} //optional
+      />
+       {errors3.overs && <span>This field is required</span>}
+      </Stack>
+      <Button type='submit'>create </Button>
     </form>
     </Box>
 
-    <Box sx={{bgcolor:'#f9fbe7', width:'300px', height:'500px',my:10 ,boxShadow: 10}}>
+    <Box sx={{ display: 'flex',flexWrap:'wrap',alignItems:'center',px:15,  
+    bgcolor:'#f9fbe7', width:'200px', height:'600px',m:10,boxShadow: 10}}>
     <Typography  variant="h4" gutterBottom>
                 Delete team
     </Typography>
     <form id='exit' key={3}  onSubmit={handleSubmit2(teamDeleteSubmit)}>
 
-      <div>
-          <label>team delete</label>
-          <input type='text' placeholder='enter your ' {...register2("deleteteam", { required: true })} />
-          {errors2.deleteteam && <span>This field is required</span>}
-      </div>
-      <input type="submit" />
+    <Stack>
+        <TextField
+        type='text'
+         {...register2("deleteteam", { required: true })}
+        label={"enter name of team"} //optional
+      />
+       {errors2.deleteteam && <span>This field is required</span>}
+      </Stack>
+
+      <Button type='submit'>delete</Button>
     </form>
-    <Typography  variant="h4" gutterBottom>
+    
+      <form id='exit' key={4} onSubmit={handleSubmit(IMguploadSubmit)}>
+
+      <Typography  variant="h4" gutterBottom>
            team profile update
      </Typography>
-      <form id='exit' key={4} onSubmit={handleSubmit(IMguploadSubmit)}>
-       <div>
-      <label>image file upload</label>
-                <input type="file"   {...register("image")}  />
-      </div>
-      <div>
-          <label>description</label>
-           <input type='text' placeholder='enter your description' {...register("description", { required: true })} />
-          {errors.email&& <span>This field is required</span>}
-          </div>
-        <div>
-          <label>teamer</label>
-          <input type='text' placeholder='enter your team name' {...register("teamer", { required: true })} />
-          {errors.email&& <span>This field is required</span>}
-            <input type="submit" />
-        </div>
+
+      <Stack>
+        <TextField
+        type='file'
+         {...register("image", { required: true })}
+      //optional
+      />
+       {errors2.image && <span>This field is required</span>}
+      </Stack>
+
+      <Stack>
+        <TextField
+        type='text'
+         {...register("description", { required: true })}
+        label={"enter description"} //optional
+      />
+       {errors.description && <span>This field is required</span>}
+      </Stack>
+        <Stack>
+        <TextField
+        type='text'
+         {...register("teamer", { required: true })}
+        label={"enter team name"} //optional
+      />
+       {errors.teamer && <span>This field is required</span>}
+      </Stack>
+      <Button type='submit'>update</Button>
     </form>
         </Box>
     </Box>

@@ -28,50 +28,37 @@ function Login() {
     }
 
     return (
-    <Stack  sx={{borderRadius:10,backgroundColor:'#04AA6D',width:250,height:300, p:10,marginLeft:'40%',
+    <Stack  sx={{borderRadius:10,backgroundColor:'#f9fbe7',width:250,height:300, p:10,marginLeft:'40%',
     boxShadow: 10,marginTop:'10%',fontWeight:'600',alignItem:'center'}}>
 
     <div className="login-page">
         <form onSubmit={handleSubmit(loginSubmit)}>
-       <Stack  sx={{
-          bgcolor: '#04AA6D',
-          borderBlockColor:"violet",
-          boxShadow:10,
-          borderRadius:5,
-          textAlign: 'center',
-          fontFamily:'monospace',
-          fontWeight:'900',
-          m:2
-        }}>
+      
              <Typography  variant="h4" gutterBottom>
                 User
              </Typography>
-        </Stack>
 
-      
-            <label>Email</label>
-
+        <label>Email</label>
       <Stack sx={{marginBottom:2,width:"100%",outline:'none'}}>
-            <input type='email' placeholder='enter your email id' {...register("email", { required: true })} />
-            {/* errors will return when field validation fails  */}
-            {errors.email&& <span>This field is required</span>}
+        <TextField
+        type='text'
+         {...register("email", { required: true })}
+        label={"email id"} //optional
+      />
+       {errors.email && <span>This field is required</span>}
       </Stack>
 
 
       <label>password</label>
-
-      <Stack  sx={{marginBottom:2,width:"100%",outline:'none'}}>
-      <input type='password'  placeholder='enter your password' {...register("password", { required: true })} />
-      {/* errors will return when field validation fails  */}
-      {errors.password && <span>This field is required</span>}
+      <Stack sx={{marginBottom:2,width:"100%",outline:'none'}}>
+        <TextField
+        type='text'
+         {...register("password", { required: true })}
+        label={"password"} //optional
+      />
+       {errors.password && <span>This field is required</span>}
       </Stack>
-      <Stack sx={{width:'50%',mx:10}} >
-
-         <Button variant="contained" color='secondary'  type='submit' >login</Button>
-    
-    
-
-      </Stack>
+         <Button  type='submit' >login</Button>
         </form>
         </div>
         </Stack>
