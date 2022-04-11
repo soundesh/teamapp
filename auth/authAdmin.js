@@ -1,15 +1,24 @@
-const Users = require('../models/userModel')
-
+const mysql=require('mysql2')
+const db=mysql.createPool({
+    host :'localhost',
+    user:'root',
+    password:'monkatwork',
+    database:'ipldb',
+})
 const authAdmin = async (req, res, next) =>{
     try {
-        // Get user information by id
-        const user = await Users.findOne({
-            _id: req.user.id
-        })
-        if(user.role === 0)
-            return res.status(400).json({msg: "Admin resources access denied"})
+        
+        const Adminuser='SELECT * FROM Users WHERE id=?'
+        db.query(Adminuser,[req.user.id],(err,user)=>{
+           if(err){
+               return res.json({msg: err.message})
+               }
+               if(user.role === 0)
+               return res.status(400).json({msg: "Admin resources access denied"})
+   
+           next()
+       })    
 
-        next()
         
     } catch (err) {
         return res.status(500).json({msg: err.message})

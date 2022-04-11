@@ -1,12 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import axios from 'axios'
 import Stack from '@mui/material/Stack';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { Button,ButtonGroup, Divider } from '@mui/material';
+import { Button} from '@mui/material';
 
 
 function Login() {
@@ -52,7 +50,7 @@ function Login() {
       <label>password</label>
       <Stack sx={{marginBottom:2,width:"100%",outline:'none'}}>
         <TextField
-        type='text'
+        type='password'
          {...register("password", { required: true })}
         label={"password"} //optional
       />

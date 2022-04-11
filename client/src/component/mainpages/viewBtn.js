@@ -5,7 +5,6 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
@@ -18,10 +17,11 @@ const ViewBtn = () => {
   useEffect(()=>{
       if(params.id){
             teams.forEach(item => {
-                if(item._id === params.id){ return setTeam(item)}
+                if(item.id == params.id)
+                {
+                   return setTeam(item)}
             })
       }
-
   },[params,teams])
 
 
@@ -29,7 +29,7 @@ const ViewBtn = () => {
     
   return (
    
-<Card sx={{border: 1 , borderColor: 'text.primary',  maxWidth:900, m:10 ,padding:2}}>
+<Card key={team.id} sx={{border: 1 , borderColor: 'text.primary',  maxWidth:900, m:10 ,padding:2}}>
 
 <Typography variant="h3" color="text.secondary">
         {team.team}
@@ -38,7 +38,7 @@ const ViewBtn = () => {
       sx={{ maxWidth:700,height:400,borderRadius:20, m:10}}
         component="img"
         image={team.image}
-        alt= {team.team}images
+        alt= {team.team}
       />
 
      <CardContent>
@@ -61,8 +61,6 @@ const ViewBtn = () => {
         </Typography>
          </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
   )

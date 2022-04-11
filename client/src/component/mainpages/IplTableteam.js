@@ -10,10 +10,11 @@ import Paper from '@mui/material/Paper';
 import {GlobalState} from '../../GlobalState'
 
 const IplTableteam = () => {
-
   const State = useContext(GlobalState)
   const teams=State.IplDataState.Iplteam[0]
-  console.log(teams)
+  teams.sort(function (a, b) {
+      return b.totalpoints - a.totalpoints || b.runrate - a.runrate;
+  });
   return (
   <div>
 <TableContainer component={Paper}>
@@ -23,6 +24,8 @@ const IplTableteam = () => {
             <TableCell  align="center">Team</TableCell>
             <TableCell align="center">Team Match</TableCell>
             <TableCell align="center">winings</TableCell>
+            
+            <TableCell align="center">draw</TableCell>
             <TableCell align="center">lose</TableCell>
             <TableCell align="center">totalpoints</TableCell>
             <TableCell align="center">runrate</TableCell>
@@ -34,14 +37,16 @@ const IplTableteam = () => {
           {teams.map((team) => (
 
             <TableRow
-              key={team._id}
+              key={team.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
             <TableCell align="center"  component="th" scope="row">{team.team} </TableCell>
 
-            <TableCell align="center">{team.match} </TableCell>
+            <TableCell align="center">{team.matchs} </TableCell>
 
             <TableCell align="center">{team.winings} </TableCell>
+
+            <TableCell align="center">{team.draw} </TableCell>
 
             <TableCell align="center">{team.lose} </TableCell>
 
@@ -49,7 +54,7 @@ const IplTableteam = () => {
 
             <TableCell align="center">{Math.round(team.runrate * 10000) / 10000}</TableCell>
             
-            <TableCell align="center"><Link  to={`/ipltable/${team._id}`}>team details</Link></TableCell>
+            <TableCell align="center"><Link  to={`/ipltable/${team.id}`}>team details</Link></TableCell>
             </TableRow>
 
           ))}

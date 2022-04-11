@@ -1,59 +1,50 @@
-const Users = require('../models/userModel')
+
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const mysql=require('mysql2')
+const db=mysql.createPool({
+    host :'localhost',
+    user:'root',
+    password:'monkatwork',
+    database:'ipldb',
+})
 
 const userCtrl = {
     register: async (req, res) =>{
         try {
             const {name, email, password} = req.body;
+            const signup="INSERT INTO Users(username,email,password) VALUES (?,?,?)";
+             db.query(signup,[name,email,password],(err,result)=>{
+                if(err){
+                    return res.json({msg: err.message})
+                    }
 
-            const user = await Users.findOne({email})
-            if(user) return res.status(400).json({msg: "The email already exists."})
-
-            if(password.length < 6) 
-                return res.status(400).json({msg: "Password is at least 6 characters long."})
-
-            const passwordHash = await bcrypt.hash(password, 14)
-            const newUser = new Users({
-                name, email, password: passwordHash
+         res.json({msg:"registered successfully"})
             })
-            await newUser.save()
-            const accesstoken = createAccessToken({id: newUser._id})
-            const refreshtoken = createRefreshToken({id: newUser._id})
-
-            res.cookie('refreshtoken', refreshtoken, {
-                httpOnly: true,
-                path: '/user/refresh_token',
-                maxAge: 7*24*60*60*1000 
-            })
-
-            res.json({accesstoken})
-
         } catch (err) {
             return res.status(500).json({msg: err.message})
+      
         }
     },
+
+    
     login: async (req, res) =>{
         try {
             const {email, password} = req.body;
-
-            const user = await Users.findOne({email})
-            if(!user) return res.status(400).json({msg: "User does not exist."})
-
-            const isMatch = await bcrypt.compare(password, user.password)
-            if(!isMatch) return res.status(400).json({msg: "Incorrect password."})
-
-            const accesstoken = createAccessToken({id: user._id})
-            const refreshtoken = createRefreshToken({id: user._id})
-
-            res.cookie('refreshtoken', refreshtoken, {
-                httpOnly: true,
-                path: '/user/refresh_token',
-                maxAge: 7*24*60*60*1000 
-            })
-
-            res.json({accesstoken})
-
+            const loginer='SELECT * FROM Users WHERE email = ? AND password = ?'
+            db.query(loginer, [email, password], function(err, user, fields) {
+                if(err){
+                    return res.json({msg: err.message})
+                    }
+                const accesstoken = createAccessToken({id:user[0].id})
+                const refreshtoken = createRefreshToken({id:user[0].id})
+                 res.cookie('refreshtoken', refreshtoken, {
+                   httpOnly: true,
+                    path: '/user/refresh_token',
+                    maxAge: 7*24*60*60*1000 
+                })
+                res.json({accesstoken})
+                })
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
@@ -86,10 +77,15 @@ const userCtrl = {
     },
     getUser: async (req, res) =>{
         try {
-            const user = await Users.findById(req.user.id).select('-password')
-            if(!user) return res.status(400).json({msg: "User does not exist."})
 
-            res.json(user)
+            const finduser='SELECT * FROM Users WHERE id=?'
+           
+            db.query(finduser,[req.user.id],(err,user)=>{
+               if(err){
+                   return res.json({msg: err.message})
+                   }
+            res.json(user[0]) 
+           })
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }

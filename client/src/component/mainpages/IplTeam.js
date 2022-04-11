@@ -15,13 +15,14 @@ import Box from '@mui/material/Box';
 const IplTeam = () => {
   const State = useContext(GlobalState)
   const teams=State.IplDataState.Iplteam[0]
+  
   return (
     <Box sx={{display:'flex',flexWrap:'wrap'
   }}>
     
               {
                 teams.map(team =>{
-                  return <Details key={team._id} team={team}/>
+                  return <Details key={team.id} team={team}/>
                 })
               }
     </Box>
@@ -33,8 +34,9 @@ const IplTeam = () => {
 
 const Details= ({team}) => {
   return (
+    <Box Key={team.id}>
 
-<Card sx={{border: 1 , borderColor: 'text.primary',maxWidth:700, m:10 ,padding:2}}>
+<Card   sx={{border: 1 , borderColor: 'text.primary',maxWidth:700, m:10 ,padding:2}}>
 
 <Typography variant="h3" color="text.secondary">
         {team.team}
@@ -44,7 +46,7 @@ const Details= ({team}) => {
     
         component="img"
         image={team.image}
-        alt= {team.team}images
+        alt= {team.team}
       />
 
      <CardContent>
@@ -65,11 +67,8 @@ const Details= ({team}) => {
             <p>total number of runrate{team.runrate}</p>
         </Typography>
          </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
+    </Box>
 )}
 
 

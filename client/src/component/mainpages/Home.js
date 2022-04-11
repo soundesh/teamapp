@@ -1,4 +1,5 @@
 import React from 'react'
+import SimpleImageSlider from "react-simple-image-slider";
 
 
 const images= ["https://c.ndtvimg.com/2022-02/46b3fbig_ipl-10-teams-logo_625x300_25_February_22.jpg?im=FaceCrop,algorithm=dnn,width=806,height=605",
@@ -12,56 +13,24 @@ const delay = 2500;
 
 const Home = () => {
 
-  const [index, setIndex] = React.useState(0)
-  const timeoutRef = React.useRef(null);
-
-  function resetTimeout() {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  }
-
-  React.useEffect(() => {
-    resetTimeout();
-    timeoutRef.current = setTimeout(() => setIndex((prevIndex) =>
-          prevIndex === images.length - 1 ? 0 : prevIndex + 1
-        ),
-      delay
-    );
-
-    return () => {
-      resetTimeout();
-    };
-  }, [index]);
-
 
   return (
     <div className='home'>
       <h3> Indian Premier League</h3>
-      <p>The Indian Premier League <abbr>(IPL)</abbr> is a professional men's Twenty20 cricket league, contested by ten teams based out of ten Indian cities.[1] The league was founded by the Board of Control 
-        for Cricket in India (BCCI) in 2007. It is usually held between March and May of every year and has an exclusive window in the ICC Future Tours Programme.[2]</p>
-
-  <div className="slideshow">
-  <div
-    className="slideshowSlider"
-    style={{ transform: `translate3d(${-index * 100}%,0,0)` }}
-  >
-  </div>
-
-  <div className="slideshowDots">
-    {images.map((_, idx) => (
-      <div
-        key={idx}
-        className={`slideshowDot${index === idx ? " active" : ""}`}
-        onClick={() => {
-          setIndex(idx);
-        }}
-      ></div>
-    ))}
-  </div>
-  </div> 
-
-
+      <p>The Indian Premier League <abbr title="The Indian Premier League">(IPL)</abbr> is a professional men's Twenty20 cricket league, contested by ten teams based out of ten Indian cities. The league was founded by the Board of Control 
+    for Cricket in India <abbr title=" Board of Control for Cricket in India">(BCCI)</abbr> in 2007. It is usually held between March and May of every year and has an exclusive window in the ICC Future Tours Programme.</p>
+        <div>
+          <hr/>
+      <SimpleImageSlider
+      autoPlay={true}
+        width={896}
+        height={504}
+        images={images}
+        showBullets={true}
+        showNavs={true}
+      />
+      <hr/>
+    </div>
 <p>
 The IPL is the most-attended cricket league in the world and in 2014 was ranked sixth by average attendance among all sports leagues.[3] In 2010, the IPL became the first sporting event in the world to be broadcast live on YouTube.[4][5] The brand value of the IPL in 2019 was ₹47,500 crore (US$6.2 billion), according to Duff & Phelps.[6] According to BCCI, the 2015 IPL season contributed ₹1,150 crore (US$150 million) to the GDP of the Indian economy.[7] The 2020 IPL season set a massive viewership record with 31.57 million average impressions and with an overall consumption increase of 23 per cent from the 2019 season.
 

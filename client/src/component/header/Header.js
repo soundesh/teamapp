@@ -78,14 +78,14 @@ const loggedRouter = () =>{
 }
 
   return (
-    <Box  sx={{
+    <Box  sx={{display:'flex',flexWrap:'wrap',
       display: 'grid',
       gridAutoFlow: 'row',
       gap: 1,
     }}>
     <AppBar position="static">
       <Toolbar>
-        <Grid container spacing={24}>
+        <Grid container>
           <Grid item xs={4}>
           <div className={classes.logo}>
             <img className={classes.img} src={LOGO} alt='ff'/>
@@ -93,7 +93,7 @@ const loggedRouter = () =>{
           </div>
           </Grid>
 
-          <Grid item xs={8}>
+          <Grid item xs={12}>
           <div className="listed">
             
             <Link to='/iplteam' className={classes.links}>IPLteam</Link>
